@@ -35,4 +35,11 @@ entity Addresses {
     state : String;
     country : String;
 }
+
+entity BusinessPartner{
+    key ID : UUID;
+    SupplierName : String;
+    city : String
+}
  
+ // B1CA-5236

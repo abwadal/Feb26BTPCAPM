@@ -11,10 +11,15 @@ service BookService {
         end as CDES : String(20) @(title : '{i18n>CURRENCY}'),
         category as genre} excluding{ createdAt, createdBy, modifiedAt, modifiedBy };
     @readonly entity Authors as projection on database.Authors;
+ 
+    @readonly entity Addresses as projection on database.Addresses;
+
+    @readonly entity SupplierSrv as projection on database.BusinessPartner;
+
 }
-@readonly service AddressesSrv {
-    entity Addresses as projection on database.Addresses;
-}
+
+    
+
 service OrdersService {
 
     entity Orders as projection on database.Orders;
