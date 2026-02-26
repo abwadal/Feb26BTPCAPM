@@ -12,7 +12,9 @@ service BookService {
         category as genre} excluding{ createdAt, createdBy, modifiedAt, modifiedBy };
     @readonly entity Authors as projection on database.Authors;
 }
-
+@readonly service AddressesSrv {
+    entity Addresses as projection on database.Addresses;
+}
 service OrdersService {
 
     entity Orders as projection on database.Orders;
