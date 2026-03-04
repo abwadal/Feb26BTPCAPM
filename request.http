@@ -1,6 +1,7 @@
  
 POST http://localhost:8080/odata/v4/OrdersService/Orders
 Content-Type: application/json
+Authorization: Basic klaus:pass_klaus
  
 {
     "items" : [
@@ -21,3 +22,13 @@ Accept: application/json
 GET http://localhost:8080/odata/v4/OrdersService/Orders?$expand=items
 Accept: application/json
  
+
+### Admin
+GET http://localhost:8080/odata/v4/AdminService/
+Accept: application/json
+Authorization: Basic ajay:pass_ajay
+ 
+### Display
+GET http://localhost:8080/odata/v4/OrdersService/Orders?$expand=items
+Content-Type: application/json
+Authorization: Basic ajay:pass_ajay

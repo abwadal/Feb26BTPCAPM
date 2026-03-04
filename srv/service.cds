@@ -11,10 +11,6 @@ service BookService {
         end as CDES : String(20) @(title : '{i18n>CURRENCY}'),
         category as genre} excluding{ createdAt, createdBy, modifiedAt, modifiedBy };
     @readonly entity Authors as projection on database.Authors;
- 
-    @readonly entity Addresses as projection on database.Addresses;
-
-    @readonly entity SupplierSrv as projection on database.BusinessPartner;
 
 }
 
@@ -22,7 +18,29 @@ service BookService {
 
 service OrdersService {
 
+    @(restrict:[
+            {
+                grant: '*',
+                to: 'Administrators'
+            },
+            {
+                grant: '*',
+                where: 'createdBy = $user'
+            }
+            
+    ])
     entity Orders as projection on database.Orders;
+
+    @(restrict:[
+            {
+                grant: '*',
+                to: 'Administrators'
+            },
+            {
+                grant: '*',
+                where: 'parent.createdBy = $user'
+            }
+    ])
     entity OrderItems as projection on database.OrderItems;
 }
 
@@ -31,3 +49,4 @@ extend service AdminService with{
     entity Authors as projection on database.Authors;
 }
 
+annotate AdminService with @(requires: 'Administrators' );
